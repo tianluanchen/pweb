@@ -1,0 +1,47 @@
+{
+    "name": "pweb",
+    "version": "0.0.2",
+    "description": "Quickly proxy and modify websites, with built-in command-line usage.",
+    "main": "./lib/proxy-website.js",
+    "types": "./lib/proxy-website.d.ts",
+    "type": "module",
+    "files": [
+        "bin",
+        "lib"
+    ],
+    "bin": {
+        "pweb": "./bin/cli.js"
+    },
+    "scripts": {
+        "format": "prettier --write ./src/* ./example/* ./bin/*",
+        "build": "tsc"
+    },
+    "engines": {
+        "node": ">=14.0.0"
+    },
+    "author": "Ayouth",
+    "homepage": "https://github.com/tianluanchen/pweb",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tianluanchen/pweb"
+    },
+    "keywords": [
+        "proxy",
+        "mirror",
+        "website",
+        "http",
+        "agent"
+    ],
+    "license": "MIT",
+    "dependencies": {
+        "commander": "^12.0.0",
+        "http-proxy": "^1.18.1",
+        "http-proxy-agent": "^5.0.0",
+        "https-proxy-agent": "^5.0.1"
+    },
+    "devDependencies": {
+        "@types/http-proxy": "^1.17.10",
+        "prettier": "^3.2.5",
+        "typescript": "^5.3.3"
+    }
+}

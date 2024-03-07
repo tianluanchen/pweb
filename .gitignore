@@ -1,0 +1,6 @@
+*.py
+*.tgz
+*.zip
+node_modules
+/*.sh
+lib
