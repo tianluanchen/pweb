@@ -78,7 +78,7 @@ Examples:
     .action((url, options) => {
         const { port, hostname } = parseAddr(options.addr);
         const app = new ProxyWebsite({
-            proxyUrl: options.proxyUrl || undefined,
+            proxyUrl: options.proxy,
             targetUrl: url,
             transferPrefix: options.path
         });

@@ -34,7 +34,7 @@ class ProxyWebsite {
         "http:": http.Agent;
         "https:": https.Agent;
     };
-    static readonly version = "0.0.2";
+    static readonly version = "0.0.3";
     readonly serverProxyPath: string;
     readonly proxy: httpProxy;
     proxyErrorCallback: httpProxy.ErrorCallback;
