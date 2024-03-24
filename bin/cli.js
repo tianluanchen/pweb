@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import { program, InvalidArgumentError } from "commander";
 import { ProxyWebsite, css, js } from "../lib/proxy-website.js";
+import { createRequire } from "module";
+const { version } = createRequire(import.meta.url)("../package.json");
 /**
  * @param {string} v
  * @returns {{port: number, hostname?: string}}
@@ -29,7 +31,7 @@ const parseAddr = (v) => {
 program
     .name("pweb")
     .description("Quickly proxy a website")
-    .version(ProxyWebsite.version)
+    .version(version)
     .option(
         "-a, --addr <address>",
         "listen address",
