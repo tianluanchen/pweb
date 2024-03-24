@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import { program, InvalidArgumentError } from "commander";
-import { ProxyWebsite } from "../lib/proxy-website.js";
-
+import { ProxyWebsite, css, js } from "../lib/proxy-website.js";
 /**
  * @param {string} v
  * @returns {{port: number, hostname?: string}}
@@ -57,6 +56,8 @@ program
         return v;
     })
     .option("--hook", "proxy browser side xhr requests", false)
+    .option("--css <string>", "inject css to HTML")
+    .option("--js <string>", "inject javascript to HTML")
     .argument("<url>", "url to proxy", (v) => {
         try {
             const u = new URL(v);
@@ -72,7 +73,7 @@ Examples:
   pweb -a 127.0.0.1:3000  https://example.com
   pweb --hook  https://example.com
   pweb --proxy http://127.0.0.1:8080 https://example.com
-  pweb --hook --path /__example__/  https://example.com
+  pweb --css "body{background:pink !important;}" --js "window.onload=()=>alert('Now the background is pink!')"  https://www.example.com
 `
     )
     .action((url, options) => {
@@ -84,6 +85,23 @@ Examples:
         });
         if (options.hook) {
             app.useBrowserHook();
+        }
+        if (options.css || options.js) {
+            app.on("html", (buf) => {
+                if (buf) {
+                    return Buffer.concat([
+                        Buffer.from(
+                            css()
+                                .write(options.css || "")
+                                .html() +
+                                js()
+                                    .write(options.js || "")
+                                    .html()
+                        ),
+                        buf
+                    ]);
+                }
+            });
         }
         app.on("*", (buf, proxyRes, req, res) => {
             console.log(
