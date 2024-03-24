@@ -27,6 +27,9 @@ pweb -a 127.0.0.1:3000 https://www.example.com
 # Inject hook code for the proxied webpage, so all XHR requests will go through the server started by pweb
 pweb --hook https://www.example.com
 
+# Inject CSS and JS code for the proxied webpage
+pweb --css "body{background:pink !important;}" --js "window.onload=()=>alert('Now the background is pink!')"  https://www.example.com
+
 # Get more help
 pweb --help
 ```

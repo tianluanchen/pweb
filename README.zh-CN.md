@@ -27,6 +27,9 @@ pweb -a 127.0.0.1:3000 https://www.example.com
 # 为代理的网页注入hook代码，使得所有的XHR请求都会经过pweb启动的服务器
 pweb --hook https://www.example.com
 
+# 为代理的网页注入CSS和JS代码 
+pweb --css "body{background:pink !important;}" --js "window.onload=()=>alert('Now the background is pink!')"  https://www.example.com
+
 # 获取更多帮助
 pweb --help
 ```
