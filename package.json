@@ -1,6 +1,6 @@
 {
     "name": "pweb",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Quickly proxy and modify websites, with built-in command-line usage.",
     "main": "./lib/proxy-website.js",
     "types": "./lib/proxy-website.d.ts",
